@@ -1,31 +1,34 @@
 class Rectangle {
     #length;
     #height;
-    setLength(l) {
-        if (l >= 0) {
-            this.#length = l
-        } else {
-            throw "length Cannot be Negetive."
+    constructor(length, height) {
+        if (typeof (length) != "number") {
+            throw "lenght is not a number"
         }
-    }
-    setHeight(h) {
-        if (h >= 0) {
-            this.#height = h
-        } else {
-            throw "height Cannot be Negetive."
+        if (typeof (height) != "number") {
+            throw "lenght is not a number"
         }
+        if (length < 0) {
+            throw "lenght should not be negetive"
+        }
+        if (height < 0) {
+            throw "height should not be negetive"
+        }
+
+        this.#height = height;
+        this.#length = length
     }
     getLength() {
         if (this.#length == undefined) {
             throw "length is undefined"
-        }else{
+        } else {
             return this.#length
         }
     }
     getHeight() {
         if (this.#height == undefined) {
             throw "height is undefined"
-        }else{
+        } else {
             return this.#height
         }
     }
@@ -38,10 +41,7 @@ class Rectangle {
 }
 
 
-let r1 = new Rectangle();
-
-r1.setLength(4)
-r1.setHeight(5)
+let r1 = new Rectangle(4, 5);
 
 let area = r1.getArea()
 let c = r1.getCircumferance();

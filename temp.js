@@ -1,14 +1,25 @@
 class Circle {
     #radius;
-    setRadius(r) {
-        if (r >= 0) {
-            this.#radius = r;
+    constructor(r) {
+        if (r == undefined) {
+            throw "radius is undefined"
         }
+        if (typeof(r) != "number") {
+            throw "radius must be number"
+        }
+        if (isNaN(r)) {
+            throw "radius is NaN"
+        }
+        if (r < 0) {
+            throw "radius is negetive"
+        }
+        
+        this.#radius = r;
     }
-    getRadius(){
-        if(this.#radius){
+    getRadius() {
+        if (this.#radius) {
             return this.#radius;
-        }else{
+        } else {
             throw "Radius is undefined"
         }
     }
@@ -23,7 +34,7 @@ class Circle {
     }
 }
 
-let c = new Circle();
-c.setRadius(3)
+let c = new Circle(89);
+//c.setRadius(3)
 console.log(c.getDiameter())
 
