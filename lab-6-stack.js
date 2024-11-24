@@ -6,17 +6,17 @@ class Stack {
     constructor() {
         this.#array = []
     }
-    getLastItem() {
+    peek() {
         if (this.isEmpty()) {
             throw "Stack is Empty."
         }
         let lastIndex = this.#array.length - 1;
         return this.#array[lastIndex];
     }
-    addToStack(value) {
+    push(value) {
         this.#array.push(value)
     }
-    deleteFromStack() {
+    pop() {
         if (this.isEmpty()) {
             throw "Stack is Empty."
         }
@@ -24,6 +24,9 @@ class Stack {
     }
     isEmpty() {
         return this.#array.length == 0
+    }
+    size() {
+        return this.#array.length
     }
 }
 
@@ -43,18 +46,18 @@ class Stack {
 let s = new Stack();
 console.log(s.isEmpty()) /// true
 
-s.addToStack(50)
+s.push(50)
 console.log(s.isEmpty())  // false
-console.log(s.getLastItem()) // 50
+console.log(s.peek()) // 50
 
-s.addToStack(40)
-s.addToStack(80)
-s.addToStack(90)
-console.log(s.getLastItem()) // 90
+s.push(40)
+s.push(80)
+s.push(90)
+console.log(s.peek()) // 90
 
-console.log(s.deleteFromStack()) // 90
+console.log(s.pop()) // 90
 
-console.log(s.getLastItem()) //80
+console.log(s.peek()) //80
 
 
 
