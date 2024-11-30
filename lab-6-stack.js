@@ -43,22 +43,23 @@ class Stack {
 //  isEmpty() 
 
 
-let s = new Stack();
-console.log(s.isEmpty()) /// true
+// let s = new Stack();
+// console.log(s.isEmpty()) /// true
 
-s.push(50)
-console.log(s.isEmpty())  // false
-console.log(s.peek()) // 50
+// s.push(50)
+// console.log(s.isEmpty())  // false
+// console.log(s.peek()) // 50
 
-s.push(40)
-s.push(80)
-s.push(90)
-console.log(s.peek()) // 90
+// s.push(40)
+// s.push(80)
+// s.push(90)
+// console.log(s.peek()) // 90
 
-console.log(s.pop()) // 90
+// console.log(s.pop()) // 90
 
-console.log(s.peek()) //80
+// console.log(s.peek()) //80
 
+module.exports = { Stack } 
 
 
 
