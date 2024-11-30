@@ -60,9 +60,7 @@ class LinkedList {
         }
 
         let prevObj = this.#getElementAt(index - 1);
-        let currentObj = prevObj.next;
-        let nextObj = currentObj.next;
-        
+        let nextObj = prevObj.next.next;        
         prevObj.next = nextObj
         this.#length--;
 
