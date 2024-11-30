@@ -1,4 +1,4 @@
-const { Stack } = require('./lab-6-stack.js')
+const { Stack } = require('./lab-6-stack.js')  // import 
 
 
 function reverse(array) {
