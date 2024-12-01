@@ -7,13 +7,19 @@ class Point {
         this.prev = prev
         this.next = next
     }
+    toArray(array = []) {
+        array.push(this.value)
+        if (this.next) {
+            return this.next.toArray(array);
+        }
+        return array
+    }
 }
 
 class DoublyLinkedList {
     #head;
     #tail;
     #length = 0;
-
     prepend(value) {
         if (this.isEmpty()) {
             let newPoint = new Point(value);
@@ -28,7 +34,6 @@ class DoublyLinkedList {
             this.#length++;
         }
     }
-
     append(value) {
         if (this.isEmpty()) {
             let newPoint = new Point(value);
@@ -46,7 +51,6 @@ class DoublyLinkedList {
             this.#length++;
         }
     }
-
     //remove from tail
     pop() {
         if (this.isEmpty()) {
@@ -106,8 +110,13 @@ class DoublyLinkedList {
         console.log("------------------------")
         console.log("")
     }
-
     findValueAt(index) {
+        const point = this.#findPointAt(index);
+        if (point) {
+            return point.value
+        }
+    }
+    #findPointAt(index) {
         const midIndex = this.size() / 2;
         if (index > midIndex) {
             return this.#findValueFromRight(index)
@@ -115,46 +124,65 @@ class DoublyLinkedList {
             return this.#findValueFromLeft(index)
         }
     }
-
     #findValueFromLeft(index) {
-        console.log("finding from left")
         let temp = this.#head;
         let counter = 0;
         while (temp) {
             if (counter == index) {
-                return temp.value
+                return temp
             }
             temp = temp.next;
             counter++
         }
     }
-
     #findValueFromRight(index) {
-        console.log("finding from right")
         let temp = this.#tail;
         let counter = this.#length - 1;
         while (temp) {
             if (counter == index) {
-                return temp.value
+                return temp
             }
             temp = temp.prev;
             counter--
         }
     }
+    insertAt(index, value) {
+        if (index < 0 || index > this.size()) {
+            throw 'invalid index: ' + index;
+        }
+        if (index == 0) {
+            this.prepend(value);
+            return;
+        } else if (index == this.size()) {
+            this.append(value);
+            return;
+        } else {
+            const current = this.#findPointAt(index);
+            const prev = current.prev;
+            const newPoint = new Point(value);
+            prev.next = newPoint;
+            newPoint.prev = prev;
+            newPoint.next = current;
+            current.prev = newPoint;
+            this.#length++;
+        }
+    }
 
+    toArray(){
+        if(this.isEmpty()){
+            return []
+        }else{
+            return this.#head.toArray()
+        }
+    }
 }
 
 
 let ll = new DoublyLinkedList();
-ll.append(5)
-ll.append(6)
-ll.append(7)
-ll.append(8)
-ll.append(9)
-ll.append(10)
-ll.append(12)
-ll.append(13)
-ll.printForward();
 
-const indexTofind = 6
-console.log(`element at [${indexTofind}] : ${ll.findValueAt(indexTofind)}`)
+ll.insertAt(0,"Apple")
+ll.insertAt(1,"Mango")
+ll.insertAt(2,"Banana")
+
+
+console.log(ll.toArray())
